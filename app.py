@@ -12,7 +12,7 @@ except:
 	from urllib.parse import urlparse, parse_qs
 
 import os
-port = int(os.environ.get("PORT", 5000))	
+port = int(os.environ.get("PORT", 5001))	
 PORT_NUMBER = port
 
 
