@@ -11,7 +11,7 @@
 		<textarea style="resize:none; border: none" readonly rows="1" cols="10">Board Id</textarea><br/>
 		<textarea style="resize:none" id='userId' rows="1" cols="10">User</textarea>
 		<textarea  style="resize:none" id='boarId' rows="1" cols="10">rp</textarea><br/>
-		<button id="led" onclick="led()">led1</button>
+		<button onclick="led()">led1</button>
 		<h1 id="led_state">off</h1>
 		<h1>sensor</h1>
 		<h1 id="sensor_val">0</h1>
@@ -82,12 +82,19 @@
   }
 
     // called when a message arrives
+ y=0;
   function led() {
     boarId=document.getElementById("boarId").value;
     userIdId=document.getElementById("userId").value;
-	
-    sendMessage(userId+boarId+':led_state:2')
-  }
+    if (y == 0){
+    sendMessage(userId+boarId+':led_state:0')
+     y=1;}
+    else {
+     y=0;
+     sendMessage(userId+boarId+':led_state:1')
+     }
+     document.getElementById("led_state").innerHTML =msg;   
+     }
   // called when a message arrives
   myName='leo'
   led_state=true
