@@ -13,6 +13,8 @@
 		<textarea  style="resize:none" id='boarId' rows="1" cols="10">rp</textarea><br/>
 		<button id="led" onclick="led()">led1</button>
 		<h1 id="led_state">off</h1>
+		<h1>sensor</h1>
+		<h1 id="sensor_val">0</h1>
 		<!-- mosquitto MQTT -------------------------------------------------------------------->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
 		<!-- jQuery ---------------------------------------------------------------------------->
@@ -67,11 +69,8 @@
 
   // called when a message arrives
   function onMessageArrived(message) {
-    console.log("onMessageArrived:"+
-	message.payloadString);
-	sensor=document.getElementById('sensor_val')
-	sensor.innerHTML=message.payloadString
-//	doAction(message.payloadString);
+    console.log("onMessageArrived:"+message.payloadString);
+    doAction(message.payloadString);
   }
   
     // called when a message arrives
@@ -85,7 +84,7 @@
     // called when a message arrives
   function led() {
     boarId=document.getElementById("boarId").value;
-	userIdId=document.getElementById("userId").value;
+    userIdId=document.getElementById("userId").value;
 	
     sendMessage(userId+boarId+':led_state:0')
   }
@@ -93,15 +92,15 @@
   myName='leo'
   led_state=true
   function doAction(msg) {
-    n=msg.split(":")[0];
+        n=msg.split(":")[0];
 	f=msg.split(":")[1];
-	v=msg.split(":")[2]
+	v=msg.split(":")[2];
 	boarId=document.getElementById("boarId").value;
 	userId=document.getElementById("userId").value;
 	if(boarId+userId==n){
 		switch(f) {
 		  case 'led_state':
-			led_state1=v;
+			led_state=v;
 			document.getElementById("led_state").innerHTML=led_state;
 			break;
 		  case 'sensor_val':
