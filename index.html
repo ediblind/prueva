@@ -78,7 +78,7 @@
     message = new Paho.MQTT.Message(msg);
     message.destinationName = "/cloudmqtt";
     client.send(message);
-	
+    document.getElementById("led_state").innerHTML = message;
   }
 
     // called when a message arrives
