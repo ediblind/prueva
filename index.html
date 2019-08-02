@@ -88,12 +88,13 @@
     userIdId=document.getElementById("userId").value;
     if (y == 0){
     sendMessage(userId+boarId+':led_state:0')
-     y=1;}
+    document.getElementById("led_state").innerHTML ="ON";  
+    y=1;}
     else {
      y=0;
      sendMessage(userId+boarId+':led_state:1')
-     }
-     document.getElementById("led_state").innerHTML =msg;   
+     document.getElementById("led_state").innerHTML ="OFF"; 
+     }  
      }
   // called when a message arrives
   myName='leo';
